@@ -3,18 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMoving : MonoBehaviour
+public class EnemyMoving : TienMonoBehaviour
 {
     public GameObject target;
-    public NavMeshAgent agent;
+    [SerializeField] protected EnemyCtrl enemyCtrl;
 
-    private void Start()
+    protected override void LoadComponents()
     {
-        
+        base.LoadComponents();
+        LoadEnemyCtrl();
+        LoadTarget();
+    }
+
+    protected virtual void LoadEnemyCtrl()
+    {
+        if (this.enemyCtrl != null) return;
+        this.enemyCtrl = transform.parent.GetComponent<EnemyCtrl>();
+    }
+
+    protected virtual void LoadTarget()
+    {
+        if (this.target != null) return;
+        this.target = GameObject.Find("TargetMoving");
     }
 
     private void FixedUpdate()
     {
-        agent.SetDestination(target.transform.position);
+        this.Moving();
+    }
+
+    protected virtual void Moving()
+    {
+        this.enemyCtrl.Agent.SetDestination(target.transform.position);
     }
 }
