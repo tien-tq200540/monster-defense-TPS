@@ -26,7 +26,7 @@ public class PathsManager : Singleton<PathsManager>
 
     public virtual Path GetPath(int index)
     {
-        if (index > paths.Count - 1) return null;
+        if (index < 0 || index > paths.Count - 1) return null;
         return this.paths[index];
     }
 

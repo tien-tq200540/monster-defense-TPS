@@ -1,7 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class EnemyMoving : TienMonoBehaviour
 {
@@ -9,12 +9,16 @@ public class EnemyMoving : TienMonoBehaviour
     [SerializeField] protected EnemyCtrl enemyCtrl;
     public int indexPath = 0;
     [SerializeField] protected Path enemyPath;
+    [SerializeField] protected Point currentPoint;
+    [SerializeField] protected float pointDistance = Mathf.Infinity;
+    [SerializeField] protected float stopDistance = 2f;
+    [SerializeField] protected bool isFinish = false;
 
     protected override void LoadComponents()
     {
         base.LoadComponents();
         LoadEnemyCtrl();
-        LoadTarget();
+        //LoadTarget();
     }
 
     protected override void Start()
@@ -47,6 +51,25 @@ public class EnemyMoving : TienMonoBehaviour
 
     protected virtual void Moving()
     {
-        this.enemyCtrl.Agent.SetDestination(target.transform.position);
+        this.FindNextPoint();
+
+        if (this.currentPoint == null || this.isFinish == true)
+        {
+            this.enemyCtrl.Agent.isStopped = true;
+            return;
+        }
+        this.enemyCtrl.Agent.SetDestination(this.currentPoint.transform.position);
+    }
+
+    protected virtual void FindNextPoint()
+    {
+        if (this.currentPoint == null) this.currentPoint = this.enemyPath.GetPoint(0);
+
+        this.pointDistance = Vector3.Distance(transform.position, this.currentPoint.transform.position);
+        if (this.pointDistance <= this.stopDistance)
+        {
+            this.currentPoint = this.currentPoint.NextPoint;
+            if (this.currentPoint == null) this.isFinish = true;
+        }
     }
 }

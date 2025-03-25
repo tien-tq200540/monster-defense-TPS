@@ -5,6 +5,13 @@ using UnityEngine;
 public class Point : TienMonoBehaviour
 {
     [SerializeField] protected Point nextPoint;
+    public Point NextPoint => nextPoint;
+
+    protected override void LoadComponents()
+    {
+        base.LoadComponents();
+        this.LoadNextPoint();
+    }
 
     public virtual void LoadNextPoint()
     {

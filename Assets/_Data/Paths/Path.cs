@@ -23,4 +23,10 @@ public class Path : TienMonoBehaviour
         }
         Debug.LogWarning($"{transform.name}: LoadPoints", gameObject);
     }
+
+    public virtual Point GetPoint(int index)
+    {
+        if (index < 0 || index >= points.Count) return null;
+        return points[index];
+    }
 }
