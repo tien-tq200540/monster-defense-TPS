@@ -14,6 +14,11 @@ public class TienMonoBehaviour : MonoBehaviour
         this.LoadComponents();
     }
 
+    protected virtual void Start()
+    {
+        
+    }
+
     protected virtual void LoadComponents()
     {
 
