@@ -173,6 +173,8 @@ MonoBehaviour:
   currentPoint: {fileID: 0}
   pointDistance: Infinity
   stopDistance: 2
+  canMove: 0
+  isMoving: 0
   isFinish: 0
 --- !u!1 &135837831
 GameObject:
@@ -225,6 +227,8 @@ MonoBehaviour:
   currentPoint: {fileID: 0}
   pointDistance: Infinity
   stopDistance: 2
+  canMove: 0
+  isMoving: 0
   isFinish: 0
 --- !u!1 &143617155
 GameObject:
@@ -271,7 +275,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 20
+  m_Speed: 7
   m_Acceleration: 50
   avoidancePriority: 50
   m_AngularSpeed: 200
@@ -297,6 +301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 992292832}
   agent: {fileID: 143617157}
+  animator: {fileID: 1124225234}
 --- !u!1001 &198765898
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1300,7 +1305,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 20
+  m_Speed: 2
   m_Acceleration: 50
   avoidancePriority: 50
   m_AngularSpeed: 200
@@ -1326,6 +1331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 1819648648}
   agent: {fileID: 1107019588}
+  animator: {fileID: 1819648649}
 --- !u!1 &1121881366 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7987e3c3e841dc04e9576798ee6eba70, type: 3}
@@ -1547,7 +1553,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 20
+  m_Speed: 2
   m_Acceleration: 50
   avoidancePriority: 50
   m_AngularSpeed: 200
@@ -1573,6 +1579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 451895785}
   agent: {fileID: 1341222757}
+  animator: {fileID: 861487983}
 --- !u!1001 &1482910689
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1697,6 +1704,8 @@ MonoBehaviour:
   currentPoint: {fileID: 0}
   pointDistance: Infinity
   stopDistance: 2
+  canMove: 0
+  isMoving: 0
   isFinish: 0
 --- !u!114 &1691160918 stripped
 MonoBehaviour:

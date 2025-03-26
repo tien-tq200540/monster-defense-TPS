@@ -7,7 +7,9 @@ public class EnemyCtrl : TienMonoBehaviour
 {
     [SerializeField] protected Transform model;
     [SerializeField] protected NavMeshAgent agent;
+    [SerializeField] protected Animator animator;
     public NavMeshAgent Agent => agent;
+    public Animator Animator => animator;
 
     protected override void LoadComponents()
     {
@@ -30,5 +32,12 @@ public class EnemyCtrl : TienMonoBehaviour
         if (this.model != null) return;
         this.model = transform.Find("Model");
         this.model.localPosition = new Vector3(0f, 0f, 0f);
+        this.LoadAnimator();
+    }
+
+    protected virtual void LoadAnimator()
+    {
+        if (this.animator != null) return;
+        this.animator = this.model.GetComponent<Animator>();
     }
 }
