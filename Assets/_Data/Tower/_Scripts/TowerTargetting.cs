@@ -18,6 +18,11 @@ public class TowerTargetting : TienMonoBehaviour
         this.LoadSphereCollider();
     }
 
+    protected virtual void FixedUpdate()
+    {
+        this.FindNearest();
+    }
+
     protected virtual void OnTriggerEnter(Collider other)
     {
         this.AddEnemy(other);
@@ -40,10 +45,32 @@ public class TowerTargetting : TienMonoBehaviour
         if (collider.name != Const.TOWER_TARGETABLE) return;
         foreach (EnemyCtrl enemy in this.enemies)
         {
-            if (enemy.name == collider.transform.parent.name)
+            if (enemy.transform == collider.transform.parent)
             {
                 this.enemies.Remove(enemy);
                 return;
+            }
+        }
+    }
+
+    protected virtual void FindNearest()
+    {
+        float minDistance = Mathf.Infinity;
+        float curDistance;
+
+        if (this.enemies.Count == 0)
+        {
+            this.nearest = null;
+            return;
+        }
+
+        foreach (EnemyCtrl enemy in this.enemies)
+        {
+            curDistance = Vector3.Distance(enemy.transform.position, transform.position);
+            if (curDistance < minDistance)
+            {
+                minDistance = curDistance;
+                this.nearest = enemy;
             }
         }
     }

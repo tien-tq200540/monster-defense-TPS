@@ -227,7 +227,7 @@ MonoBehaviour:
   currentPoint: {fileID: 0}
   pointDistance: Infinity
   stopDistance: 2
-  canMove: 0
+  canMove: 1
   isMoving: 0
   isFinish: 0
 --- !u!1 &143617155
