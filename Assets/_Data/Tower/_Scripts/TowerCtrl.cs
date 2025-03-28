@@ -13,6 +13,9 @@ public class TowerCtrl : TienMonoBehaviour
     public BulletSpawner BulletSpawner => bulletSpawner;
     [SerializeField] protected Bullet bullet;
     public Bullet Bullet => bullet;
+    [SerializeField] protected List<FirePoint> firePoints = new();
+    public List<FirePoint > FirePoints => firePoints;
+
 
     protected override void LoadComponents()
     {
@@ -21,6 +24,14 @@ public class TowerCtrl : TienMonoBehaviour
         LoadTowerTargetting();
         LoadBulletSpawner();
         LoadBullet();
+        LoadFirePoints();
+    }
+
+    protected virtual void LoadFirePoints()
+    {
+        if (this.firePoints.Count > 0) return;
+        this.firePoints = new List<FirePoint>(GetComponentsInChildren<FirePoint>());
+        Debug.LogWarning($"{transform.name}: LoadFirePoints", gameObject);
     }
 
     protected virtual void LoadBullet()
