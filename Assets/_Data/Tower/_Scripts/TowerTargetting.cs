@@ -9,6 +9,7 @@ public class TowerTargetting : TienMonoBehaviour
     [SerializeField] protected Rigidbody _rigidbody;
     [SerializeField] protected SphereCollider sphereCollider;
     [SerializeField] protected EnemyCtrl nearest;
+    public EnemyCtrl Nearest => nearest;
     [SerializeField] protected List<EnemyCtrl> enemies = new(); //list of enemy in range attack
 
     protected override void LoadComponents()

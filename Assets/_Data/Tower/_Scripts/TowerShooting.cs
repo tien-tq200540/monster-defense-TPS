@@ -1,10 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerShooting : TowerAbstract
 {
+    [SerializeField] protected float rotationSpeed = 2f;
     [SerializeField] protected EnemyCtrl target;
+
+    protected override void Start()
+    {
+        base.Start();
+        Invoke(nameof(this.TargetLoading), 1f);
+    }
 
     protected virtual void FixedUpdate()
     {
@@ -15,6 +20,23 @@ public class TowerShooting : TowerAbstract
     {
         if (this.target == null) return;
 
-        this.towerCtrl.Rotator.LookAt(target.transform.position);
+        Vector3 directionToTarget = this.target.transform.position - this.towerCtrl.Rotator.transform.position;
+        Vector3 newDirection = Vector3.RotateTowards(
+            this.towerCtrl.Rotator.forward,
+            directionToTarget,
+            rotationSpeed * Time.fixedDeltaTime,
+            0.0f
+        );
+
+        //Apply the new direction to the rotator
+        this.towerCtrl.Rotator.rotation = Quaternion.LookRotation(newDirection);
+        
+        //this.towerCtrl.Rotator.LookAt(target.transform.position);
+    }
+
+    protected virtual void TargetLoading()
+    {
+        Invoke(nameof(this.TargetLoading), 1f);
+        this.target = this.towerCtrl.TowerTargetting.Nearest;
     }
 }
