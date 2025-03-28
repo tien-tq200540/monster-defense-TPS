@@ -13,10 +13,11 @@ public class TowerShooting : TowerAbstract
 
     protected virtual void FixedUpdate()
     {
-        this.LookAtTarget();
+        this.Looking();
+        this.Shooting();
     }
 
-    protected virtual void LookAtTarget()
+    protected virtual void Looking()
     {
         if (this.target == null) return;
 
@@ -38,5 +39,12 @@ public class TowerShooting : TowerAbstract
     {
         Invoke(nameof(this.TargetLoading), 1f);
         this.target = this.towerCtrl.TowerTargetting.Nearest;
+    }
+
+    protected virtual void Shooting()
+    {
+        if (this.target == null) return;
+        //Spawner
+        this.towerCtrl.BulletSpawner.Spawn(this.towerCtrl.Bullet);
     }
 }

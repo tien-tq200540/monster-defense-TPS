@@ -9,12 +9,32 @@ public class TowerCtrl : TienMonoBehaviour
     public Transform Rotator => rotator;
     [SerializeField] protected TowerTargetting towerTargetting;
     public TowerTargetting TowerTargetting => towerTargetting;
+    [SerializeField] protected BulletSpawner bulletSpawner;
+    public BulletSpawner BulletSpawner => bulletSpawner;
+    [SerializeField] protected Bullet bullet;
+    public Bullet Bullet => bullet;
 
     protected override void LoadComponents()
     {
         base.LoadComponents();
         LoadModel();
         LoadTowerTargetting();
+        LoadBulletSpawner();
+        LoadBullet();
+    }
+
+    protected virtual void LoadBullet()
+    {
+        if (this.bullet != null) return;
+        this.bullet = GetComponentInChildren<Bullet>();
+        Debug.LogWarning($"{transform.name}: LoadBullet", gameObject);
+    }
+
+    protected virtual void LoadBulletSpawner()
+    {
+        if (this.bulletSpawner != null) return;
+        this.bulletSpawner = GameObject.FindObjectOfType<BulletSpawner>();
+        Debug.LogWarning($"{transform.name}: LoadBulletSpawner", gameObject);
     }
 
     protected virtual void LoadModel()
