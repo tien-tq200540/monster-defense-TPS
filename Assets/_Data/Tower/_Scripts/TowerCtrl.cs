@@ -25,6 +25,7 @@ public class TowerCtrl : TienMonoBehaviour
         LoadBulletSpawner();
         LoadBullet();
         LoadFirePoints();
+        this.HidePrefabs();
     }
 
     protected virtual void LoadFirePoints()
@@ -61,5 +62,10 @@ public class TowerCtrl : TienMonoBehaviour
         if (this.towerTargetting != null) return;
         this.towerTargetting = transform.Find("TowerTargetting").GetComponent<TowerTargetting>();
         Debug.LogWarning($"{transform.name}: LoadTowerTargetting", gameObject);
+    }
+
+    protected virtual void HidePrefabs()
+    {
+        this.bullet.gameObject.SetActive(false);
     }
 }
