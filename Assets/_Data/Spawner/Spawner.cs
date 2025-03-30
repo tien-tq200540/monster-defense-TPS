@@ -9,4 +9,9 @@ public abstract class Spawner : TienMonoBehaviour
         Transform newObject = Instantiate(prefab);
         return newObject;
     }
+
+    public virtual void Despawn(Transform obj)
+    {
+        Destroy(obj.gameObject);
+    }
 }
