@@ -5,8 +5,8 @@ using UnityEngine;
 public class Bullet : TienMonoBehaviour
 {
     [SerializeField] protected float speed = 2f;
-    [SerializeField] protected Despawn despawn;
-    public Despawn Despawn => despawn;
+    [SerializeField] protected Despawn<Bullet> despawn;
+    public Despawn<Bullet> Despawn => despawn;
 
     // Update is called once per frame
     void Update()
@@ -23,7 +23,7 @@ public class Bullet : TienMonoBehaviour
     protected virtual void LoadDespawn()
     {
         if (this.despawn != null) return;
-        this.despawn = GetComponentInChildren<Despawn>();
+        this.despawn = GetComponentInChildren<Despawn<Bullet>>();
         Debug.LogWarning($"{transform.name}: LoadDespawn", gameObject);
     }
 }
