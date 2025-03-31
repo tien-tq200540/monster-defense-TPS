@@ -2,9 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Spawner<T> : TienMonoBehaviour
+public abstract class Spawner<T> : TienMonoBehaviour where T : PoolObj
 {
     [SerializeField] protected List<T> inPoolObj = new();
+
+    public virtual T Spawn(T prefab)
+    {
+        T newObject = Instantiate(prefab);
+        //newObject.Despawn.SetSpawner(this);
+        return newObject;
+    }
+
+    public virtual T Spawn(T prefab, Vector3 position)
+    {
+        T newObject = this.Spawn(prefab);
+        newObject.transform.position = position;
+        return newObject;
+    }
 
     public virtual Transform Spawn(Transform prefab)
     {

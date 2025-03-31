@@ -1175,8 +1175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6162bbb772b4db7469118890890cdee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
   despawn: {fileID: 1656820717}
+  speed: 2
 --- !u!1001 &801475596
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1313,6 +1313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5afdc42c009102842be25c9cf3d570b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inPoolObj: []
 --- !u!1 &896689407
 GameObject:
   m_ObjectHideFlags: 0
@@ -2453,9 +2454,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb335fcf0800acb4ea7469e63b7604ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawner: {fileID: 0}
   timeLife: 7
   currentTime: 7
+  parent: {fileID: 757955317}
+  spawner: {fileID: 885375389}
 --- !u!114 &1691160918 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2417733266185435185, guid: d1344b595929a8247b42aef6a8e82901, type: 3}

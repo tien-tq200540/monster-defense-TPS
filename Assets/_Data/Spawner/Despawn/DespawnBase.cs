@@ -1,8 +1,8 @@
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletSpawner : Spawner<Bullet>
+public abstract class DespawnBase : TienMonoBehaviour
 {
-    
 }

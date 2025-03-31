@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Despawn<T> : TienMonoBehaviour
+public abstract class Despawn<T> : DespawnBase where T : PoolObj
 {
     [SerializeField] protected float timeLife = 7f;
     [SerializeField] protected float currentTime = 7f;
@@ -14,15 +15,11 @@ public abstract class Despawn<T> : TienMonoBehaviour
         this.DespawnChecking();
     }
 
-    public virtual void SetSpawner(Spawner<T> spawner)
-    {
-        this.spawner = spawner;
-    }
-
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadParent();
+        this.LoadSpawner();
     }
 
     protected virtual void LoadParent()
@@ -30,6 +27,13 @@ public abstract class Despawn<T> : TienMonoBehaviour
         if (this.parent != null) return;
         this.parent = transform.parent.GetComponent<T>();
         Debug.LogWarning($"{transform.name}: LoadParent", gameObject);
+    }
+
+    protected virtual void LoadSpawner()
+    {
+        if (this.spawner != null) return;
+        this.spawner = GameObject.FindAnyObjectByType<Spawner<T>>();
+        Debug.LogWarning($"{transform.name}: LoadSpawner", gameObject);
     }
 
     protected virtual void DespawnChecking()
