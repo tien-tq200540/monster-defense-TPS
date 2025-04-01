@@ -4,12 +4,17 @@ using UnityEngine;
 
 public abstract class Spawner<T> : TienMonoBehaviour where T : PoolObj
 {
-    [SerializeField] protected List<T> inPoolObj = new();
+    [SerializeField] protected List<T> inPoolObjs = new();
 
     public virtual T Spawn(T prefab)
     {
-        T newObject = Instantiate(prefab);
-        //newObject.Despawn.SetSpawner(this);
+        T newObject = this.GetObjFromPool(prefab);
+        if (newObject == null )
+        {
+            newObject = Instantiate(prefab);
+            this.UpdateName(prefab.transform, newObject.transform);
+        }
+        
         return newObject;
     }
 
@@ -40,8 +45,31 @@ public abstract class Spawner<T> : TienMonoBehaviour where T : PoolObj
         }
     }
 
+    protected virtual void UpdateName(Transform prefab, Transform obj)
+    {
+        obj.name = prefab.name;
+    }
+
     protected virtual void AddObjToPool(T obj)
     {
-        this.inPoolObj.Add(obj);
+        this.inPoolObjs.Add(obj);
     }
+
+    protected virtual void RemoveObjFromPool(T obj)
+    {
+        this.inPoolObjs.Remove(obj);
+    }
+
+    protected virtual T GetObjFromPool(T prefab)
+    {
+        foreach (T inPoolObj in this.inPoolObjs)
+        {
+            if (prefab.name == inPoolObj.name)
+            {
+                this.RemoveObjFromPool(inPoolObj);
+                return inPoolObj;
+            }
+        }
+        return null;
+    }    
 }
