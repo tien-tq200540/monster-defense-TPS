@@ -20,7 +20,7 @@ public abstract class DamageSender : TienMonoBehaviour
         Debug.LogWarning($"{transform.name}: LoadRigidbody", gameObject);
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         DamageReceiver damageReceiver = other.GetComponent<DamageReceiver>();
         if (damageReceiver == null) return;

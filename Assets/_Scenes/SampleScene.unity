@@ -429,7 +429,7 @@ Transform:
   m_GameObject: {fileID: 333232042}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.06, y: 0.6, z: -47.84}
+  m_LocalPosition: {x: -29.78, y: 0.6, z: -47.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -811,8 +811,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 1.2
+  m_Height: 6
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!4 &535888369 stripped
@@ -1212,6 +1212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 757955316}
   - component: {fileID: 757955317}
+  - component: {fileID: 757955318}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -1246,11 +1247,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 757955315}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6162bbb772b4db7469118890890cdee9, type: 3}
+  m_Script: {fileID: 11500000, guid: 8eed96204ce0822449a4f4b75013f359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   despawn: {fileID: 1656820717}
   speed: 2
+--- !u!114 &757955318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757955315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 231ed56d766ecb3498533962f9edc0f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 757955317}
 --- !u!1001 &801475596
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1886,7 +1900,7 @@ MonoBehaviour:
   currentPoint: {fileID: 0}
   pointDistance: Infinity
   stopDistance: 2
-  canMove: 1
+  canMove: 0
   isMoving: 0
   isFinish: 0
 --- !u!1 &1107019586
@@ -2591,6 +2605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1705319191}
   damage: 1
+  bulletCtrl: {fileID: 757955318}
   sphereCollider: {fileID: 1705319192}
 --- !u!54 &1705319191
 Rigidbody:

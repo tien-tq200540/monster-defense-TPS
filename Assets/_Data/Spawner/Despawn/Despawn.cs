@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Despawn<T> : DespawnBase where T : PoolObj
@@ -41,7 +40,12 @@ public abstract class Despawn<T> : DespawnBase where T : PoolObj
         this.currentTime -= Time.fixedDeltaTime;
         if (this.currentTime > 0) return;
 
-        this.spawner.Despawn(parent);
+        this.DoDespawn();
         this.currentTime = this.timeLife;
     }
-}
+
+    public override void DoDespawn()
+    {
+        this.spawner.Despawn(parent);
+    }
+ }

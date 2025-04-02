@@ -5,4 +5,5 @@ using UnityEngine;
 
 public abstract class DespawnBase : TienMonoBehaviour
 {
+    public abstract void DoDespawn();
 }
