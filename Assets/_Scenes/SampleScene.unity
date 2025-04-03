@@ -791,7 +791,9 @@ MonoBehaviour:
   maxHP: 10
   currentHP: 10
   isDead: 0
+  isImmotal: 1
   capsuleCollider: {fileID: 524592467}
+  enemyCtrl: {fileID: 333232043}
 --- !u!136 &524592467
 CapsuleCollider:
   m_ObjectHideFlags: 0
