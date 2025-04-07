@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyCtrl : TienMonoBehaviour
+public class EnemyCtrl : PoolObj
 {
     [SerializeField] protected Transform model;
     [SerializeField] protected NavMeshAgent agent;
