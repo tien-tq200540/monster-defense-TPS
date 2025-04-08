@@ -8,6 +8,8 @@ public class EnemyCtrl : PoolObj
     [SerializeField] protected Transform model;
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] protected Animator animator;
+    [SerializeField] protected DamageReceiver damageReceiver;
+    public DamageReceiver DamageReceiver => damageReceiver;
     public NavMeshAgent Agent => agent;
     public Animator Animator => animator;
 
@@ -16,6 +18,13 @@ public class EnemyCtrl : PoolObj
         base.LoadComponents();
         this.LoadNavMeshAgent();
         this.LoadModel();   
+        this.LoadDamageReceiver();
+    }
+
+    protected virtual void LoadDamageReceiver()
+    {
+        if (this.damageReceiver != null) return;
+        this.damageReceiver = GetComponentInChildren<DamageReceiver>();
     }
 
     protected virtual void LoadNavMeshAgent()

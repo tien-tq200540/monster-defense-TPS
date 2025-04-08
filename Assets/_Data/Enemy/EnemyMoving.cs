@@ -60,6 +60,13 @@ public class EnemyMoving : TienMonoBehaviour
             return;
         }
 
+        if (this.enemyCtrl.DamageReceiver.IsDead())
+        {
+            this.enemyCtrl.Agent.isStopped = true;
+            return;
+        }
+
+
         this.FindNextPoint();
 
         if (this.currentPoint == null || this.isFinish == true)

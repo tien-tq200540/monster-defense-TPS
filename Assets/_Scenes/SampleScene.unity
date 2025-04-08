@@ -306,6 +306,7 @@ MonoBehaviour:
   model: {fileID: 992292832}
   agent: {fileID: 143617157}
   animator: {fileID: 1124225234}
+  damageReceiver: {fileID: 1718586313}
 --- !u!1001 &198765898
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -414,6 +415,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLife: 7
   currentTime: 7
+  isDespawnByTime: 0
   parent: {fileID: 1341222759}
   spawner: {fileID: 989776719}
 --- !u!1 &428132577
@@ -1825,6 +1827,7 @@ MonoBehaviour:
   model: {fileID: 1819648648}
   agent: {fileID: 1107019588}
   animator: {fileID: 1819648649}
+  damageReceiver: {fileID: 1880218180}
 --- !u!1 &1121881366 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7987e3c3e841dc04e9576798ee6eba70, type: 3}
@@ -2045,6 +2048,7 @@ MonoBehaviour:
   model: {fileID: 451895785}
   agent: {fileID: 1341222757}
   animator: {fileID: 861487983}
+  damageReceiver: {fileID: 1486340750}
 --- !u!1 &1389160950
 GameObject:
   m_ObjectHideFlags: 0
@@ -2386,6 +2390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLife: 7
   currentTime: 7
+  isDespawnByTime: 0
   parent: {fileID: 1107019590}
   spawner: {fileID: 989776719}
 --- !u!1 &1588494615
@@ -2434,6 +2439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLife: 7
   currentTime: 7
+  isDespawnByTime: 0
   parent: {fileID: 143617159}
   spawner: {fileID: 989776719}
 --- !u!1 &1590486131
@@ -2587,6 +2593,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLife: 7
   currentTime: 7
+  isDespawnByTime: 1
   parent: {fileID: 757955317}
   spawner: {fileID: 885375389}
 --- !u!114 &1691160918 stripped
@@ -2647,7 +2654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1705319191}
-  damage: 1
+  damage: 7
   bulletCtrl: {fileID: 757955318}
   sphereCollider: {fileID: 1705319192}
 --- !u!54 &1705319191
