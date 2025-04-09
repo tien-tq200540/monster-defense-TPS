@@ -16,6 +16,11 @@ public class EnemyMoving : TienMonoBehaviour
     [SerializeField] protected bool isMoving = false;
     [SerializeField] protected bool isFinish = false;
 
+    protected virtual void OnEnable()
+    {
+        this.OnReborn();
+    }
+
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -96,5 +101,10 @@ public class EnemyMoving : TienMonoBehaviour
         if (this.enemyCtrl.Agent.velocity.magnitude >= 1f) this.isMoving = true;
         else this.isMoving = false;
         this.enemyCtrl.Animator.SetBool("isMoving", this.isMoving);
+    }
+
+    protected virtual void OnReborn()
+    {
+        this.isFinish = false;
     }
 }

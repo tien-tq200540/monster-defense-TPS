@@ -9,6 +9,11 @@ public abstract class DamageReceiver : TienMonoBehaviour
     [SerializeField] protected bool isDead = false;
     [SerializeField] protected bool isImmotal = false;
 
+    protected virtual void OnEnable()
+    {
+        this.OnReborn();
+    }
+
     public virtual int Deduct(int damage)
     {
         if (!this.isImmotal) this.currentHP -= damage;
@@ -26,4 +31,9 @@ public abstract class DamageReceiver : TienMonoBehaviour
 
     protected abstract void OnDead();
     protected abstract void OnHurt();
+
+    protected virtual void OnReborn()
+    {
+        this.currentHP = this.maxHP;
+    }
 }

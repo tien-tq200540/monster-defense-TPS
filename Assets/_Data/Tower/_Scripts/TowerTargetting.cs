@@ -22,6 +22,7 @@ public class TowerTargetting : TienMonoBehaviour
     protected virtual void FixedUpdate()
     {
         this.FindNearest();
+        this.RemoveDeadEnemy();
     }
 
     protected virtual void OnTriggerEnter(Collider other)
@@ -38,6 +39,7 @@ public class TowerTargetting : TienMonoBehaviour
     {
         if (collider.name != Const.TOWER_TARGETABLE) return;
         EnemyCtrl enemy = collider.transform.parent.GetComponent<EnemyCtrl>();
+        if (enemy.DamageReceiver.IsDead()) return;
         this.enemies.Add(enemy);
     }
 
@@ -91,5 +93,18 @@ public class TowerTargetting : TienMonoBehaviour
         this.sphereCollider.isTrigger = true;
         this.sphereCollider.radius = 10f;
         Debug.LogWarning($"{transform.name}: LoadSphereCollider", gameObject);
+    }
+
+    protected virtual void RemoveDeadEnemy()
+    {
+        foreach (EnemyCtrl enemyCtrl in this.enemies)
+        {
+            if (enemyCtrl.DamageReceiver.IsDead())
+            {
+                this.enemies.Remove(enemyCtrl);
+                if (this.nearest == enemyCtrl) this.nearest = null;
+                return;
+            }
+        }
     }
 }

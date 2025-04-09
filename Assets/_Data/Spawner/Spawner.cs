@@ -5,6 +5,19 @@ using UnityEngine;
 public abstract class Spawner<T> : TienMonoBehaviour where T : PoolObj
 {
     [SerializeField] protected List<T> inPoolObjs = new();
+    [SerializeField] protected PoolHolder poolHolder;
+
+    protected override void LoadComponents()
+    {
+        base.LoadComponents();
+        this.LoadPoolHolder();
+    }
+
+    protected virtual void LoadPoolHolder()
+    {
+        if (this.poolHolder != null) return;
+        this.poolHolder = GetComponentInChildren<PoolHolder>();
+    }
 
     public virtual T Spawn(T prefab)
     {
@@ -13,6 +26,11 @@ public abstract class Spawner<T> : TienMonoBehaviour where T : PoolObj
         {
             newObject = Instantiate(prefab);
             this.UpdateName(prefab.transform, newObject.transform);
+        }
+
+        if (this.poolHolder != null)
+        {
+            newObject.transform.parent = this.poolHolder.transform;
         }
         
         return newObject;
