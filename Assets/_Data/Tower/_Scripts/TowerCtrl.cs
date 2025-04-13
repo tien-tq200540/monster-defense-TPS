@@ -13,6 +13,7 @@ public class TowerCtrl : TienMonoBehaviour
     public BulletSpawner BulletSpawner => bulletSpawner;
     [SerializeField] protected Bullet bullet;
     public Bullet Bullet => bullet;
+    [SerializeField] protected BulletPrefabs bulletPrefabs;
     [SerializeField] protected List<FirePoint> firePoints = new();
     public List<FirePoint > FirePoints => firePoints;
 
@@ -23,7 +24,7 @@ public class TowerCtrl : TienMonoBehaviour
         LoadModel();
         LoadTowerTargetting();
         LoadBulletSpawner();
-        LoadBullet();
+        this.LoadBulletPrefabs();
         LoadFirePoints();
         this.HidePrefabs();
     }
@@ -35,10 +36,18 @@ public class TowerCtrl : TienMonoBehaviour
         Debug.LogWarning($"{transform.name}: LoadFirePoints", gameObject);
     }
 
+    protected virtual void LoadBulletPrefabs()
+    {
+        if (this.bulletPrefabs != null) return;
+        this.bulletPrefabs = GameObject.FindAnyObjectByType<BulletPrefabs>();
+        this.LoadBullet();
+        Debug.LogWarning($"{transform.name}: LoadBulletPrefabs", gameObject);
+    }
+
     protected virtual void LoadBullet()
     {
         if (this.bullet != null) return;
-        this.bullet = GetComponentInChildren<Bullet>();
+        this.bullet = this.bulletPrefabs.GetByName("Bullet");
         Debug.LogWarning($"{transform.name}: LoadBullet", gameObject);
     }
 

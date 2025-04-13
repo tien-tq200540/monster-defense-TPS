@@ -22,7 +22,7 @@ public class EnemySpawning : EnemyManagerAbstract
     protected virtual void Spawning()
     {
         Invoke(nameof(this.Spawning), this.spawnSpeed);
-        if (this.spawnedEnemies.Count > this.maxSpawn) return;
+        if (this.spawnedEnemies.Count >= this.maxSpawn) return;
         EnemyCtrl prefab = this.enemyManagerCtrl.EnemyPrefabs.GetRandom();
         EnemyCtrl newEnemy = this.enemyManagerCtrl.EnemySpawner.Spawn(prefab, transform.position);
         this.spawnedEnemies.Add(newEnemy);
