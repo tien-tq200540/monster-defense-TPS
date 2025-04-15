@@ -2172,6 +2172,9 @@ MonoBehaviour:
   _rigidbody: {fileID: 1389160954}
   sphereCollider: {fileID: 1389160953}
   nearest: {fileID: 0}
+  obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
   enemies: []
 --- !u!135 &1389160953
 SphereCollider:

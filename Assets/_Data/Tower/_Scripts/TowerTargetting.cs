@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -10,6 +11,7 @@ public class TowerTargetting : TienMonoBehaviour
     [SerializeField] protected SphereCollider sphereCollider;
     [SerializeField] protected EnemyCtrl nearest;
     public EnemyCtrl Nearest => nearest;
+    [SerializeField] protected LayerMask obstacleLayerMask;
     [SerializeField] protected List<EnemyCtrl> enemies = new(); //list of enemy in range attack
 
     protected override void LoadComponents()
@@ -69,6 +71,7 @@ public class TowerTargetting : TienMonoBehaviour
 
         foreach (EnemyCtrl enemy in this.enemies)
         {
+            if (!this.CanSeeTarget(enemy)) continue;
             curDistance = Vector3.Distance(enemy.transform.position, transform.position);
             if (curDistance < minDistance)
             {
@@ -76,6 +79,23 @@ public class TowerTargetting : TienMonoBehaviour
                 this.nearest = enemy;
             }
         }
+    }
+
+    protected virtual bool CanSeeTarget(EnemyCtrl target)
+    {
+        Vector3 directionToTarget = target.transform.position - transform.position;
+        float distanceToTarget  = directionToTarget.magnitude;
+
+        if (Physics.Raycast(transform.position, directionToTarget, out RaycastHit hitInfo, distanceToTarget, obstacleLayerMask))
+        {
+            directionToTarget = hitInfo.point - transform.position;
+            distanceToTarget = directionToTarget.magnitude;
+            Debug.DrawRay(transform.position, directionToTarget.normalized * distanceToTarget, UnityEngine.Color.red);
+            return false;
+        }
+
+        Debug.DrawRay(transform.position, directionToTarget.normalized * distanceToTarget, UnityEngine.Color.green);
+        return true;
     }
 
     protected virtual void LoadRigidbody()
