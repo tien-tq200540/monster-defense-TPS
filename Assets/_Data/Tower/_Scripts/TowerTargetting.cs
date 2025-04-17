@@ -52,6 +52,7 @@ public class TowerTargetting : TienMonoBehaviour
         {
             if (enemy.transform == collider.transform.parent)
             {
+                if (enemy == this.nearest) this.nearest = null;
                 this.enemies.Remove(enemy);
                 return;
             }
@@ -86,11 +87,11 @@ public class TowerTargetting : TienMonoBehaviour
         Vector3 directionToTarget = target.transform.position - transform.position;
         float distanceToTarget  = directionToTarget.magnitude;
 
-        if (Physics.Raycast(transform.position, directionToTarget, out RaycastHit hitInfo, distanceToTarget, obstacleLayerMask))
+        if (!Physics.Raycast(transform.position, directionToTarget, out RaycastHit hitInfo, distanceToTarget, obstacleLayerMask))
         {
-            directionToTarget = hitInfo.point - transform.position;
-            distanceToTarget = directionToTarget.magnitude;
-            Debug.DrawRay(transform.position, directionToTarget.normalized * distanceToTarget, UnityEngine.Color.red);
+            Vector3 directionToCollider = hitInfo.point - transform.position;
+            float distanceToCollider = directionToCollider.magnitude;
+            Debug.DrawRay(transform.position, directionToCollider.normalized * distanceToCollider, UnityEngine.Color.red);
             return false;
         }
 

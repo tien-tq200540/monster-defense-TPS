@@ -106,5 +106,6 @@ public class EnemyMoving : TienMonoBehaviour
     protected virtual void OnReborn()
     {
         this.isFinish = false;
+        this.currentPoint = null;
     }
 }
